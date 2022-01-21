@@ -1,22 +1,19 @@
-const DB = require('../DB')
+const numberofrows = require('../utils/fatchfromDb')
 
 
 
-// return all todos
+
+
+             
+
 const get_facts =  async (req, res)  => { 
-
-    DB.connect(function(err) {
-        if (err) console.log(err);
-      });
-      
-    DB.query("SELECT * FROM Courses", function (err, result) {
-        if (err) console.log(err);
-        console.log(result);
-        res.send(result)
-       
-      });
-      DB.end();
-};
+    let tableName = req.query.tableName
+    resposne = await numberofrows(tableName)
+    console.log(resposne)
+    
+    res.send(resposne)
+    
+}
 
 
 

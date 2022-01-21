@@ -1,12 +1,31 @@
-var mysql = require('mysql');
 
-module.exports = mysql.createConnection({
-    host: "metisdb1.database.windows.net",
-    user: "user1",
-    password: "Trustno1",
-    database: "ORM",
-    connectTimeout: 50000
-  });
+
+
+    var Connection = require('tedious').Connection;  
+    var config = {  
+        server: 'metisdb1.database.windows.net',  //update me
+        authentication: {
+            type: 'default',
+            options: {
+                userName: 'user1', 
+                password: 'Trustno1'  
+            }
+        },
+        options: {
+            encrypt: true,
+            database: 'ORM'  //update me
+        }
+    };  
+    var connection = new Connection(config);  
+    connection.on('connect', function(err) {  
+        // If no error, then good to proceed.
+        console.log("Connected");  
+    });
+    
+    connection.connect();
+
+
+module.exports = connection
 
 
   
