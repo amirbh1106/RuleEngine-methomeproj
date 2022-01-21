@@ -1,1 +1,1 @@
-module.exports.todoscontroller = require('./todoscontroller');
+module.exports.factscontroller = require('./factscontroller');
