@@ -1,19 +1,20 @@
 
+require('dotenv').config();
 
 
     var Connection = require('tedious').Connection;  
     var config = {  
-        server: 'metisdb1.database.windows.net',  //update me
+        server: process.env.host,  
         authentication: {
             type: 'default',
             options: {
-                userName: 'user1', 
-                password: 'Trustno1'  
+                userName: process.env.user ,
+                password: process.env.password 
             }
         },
         options: {
             encrypt: true,
-            database: 'ORM'  //update me
+            database: process.env.database
         }
     };  
     var connection = new Connection(config);  
