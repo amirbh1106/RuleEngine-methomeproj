@@ -1,5 +1,6 @@
 const DB = require('../DB')
-var Request = require('tedious').Request;  
+var Request = require('tedious').Request;
+const log = require('../loginutils/savelogs')
 
 async function numberofrows(tableName){
     let result = {}
@@ -8,6 +9,7 @@ async function numberofrows(tableName){
         let request = new Request(getnumberofrows, function(err) {  
             if (err) {  
                 resolve("no such table or error hes accurd");
+                log.error("db connection error" , Date() , "numberofrows function")
             }
         });
          request.on('row', (columns) => {
@@ -28,7 +30,7 @@ async function numberofrows(tableName){
                 result.hesprimekey = value.hesprimekey.hesindex
                 result.primekey = value.index
                 resolve(result)
-            });
+            }).catch((err) => {});
            
         });
 
@@ -47,6 +49,7 @@ async function numberofrows(tableName){
              let request = new Request(getnumofindexs, function(err) {  
                  if (err) {  
                      resolve(err);
+                     log.error("db connection error" , Date() , "numofindex function")
                  }
              });
               request.on('row', (columns) => {
@@ -85,6 +88,7 @@ async function numberofrows(tableName){
                  let request = new Request(getnumofindexs, function(err) {  
                      if (err) {  
                          resolve(err);
+                         log.error("db connection error" , Date() , "getnumofindexs function")
                      }
                  });
                   request.on('row', (columns) => {
@@ -122,6 +126,7 @@ async function numberofrows(tableName){
                      let request = new Request(getnumofindexs, function(err) {  
                          if (err) {  
                              resolve(err);
+                             log.error("db connection error" , Date() , "getnumofindexs function")
                          }
                      });
                       request.on('row', (columns) => {

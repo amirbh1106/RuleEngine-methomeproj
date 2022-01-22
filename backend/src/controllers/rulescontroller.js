@@ -1,7 +1,10 @@
-const e = require('express');
+
 const numberofrows = require('../utils/fatchfromDb')
+const log = require('../loginutils/savelogs')
+
 
 const get_rules =  async (req, res)  => {
+    log.requestmade("getrules" , Date())
     let rules = {}
     let tableName = req.query.tableName     
     resposne = await numberofrows(tableName)
@@ -34,7 +37,7 @@ const get_rules =  async (req, res)  => {
         rules.Rule3.Massage = `the number of columns in PK is(${resposne.primekey})`
     }
 
-    console.log(rules)
+    log.calculated("rules" , Date() , rules)
   res.send(rules)  
 };
 

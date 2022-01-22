@@ -1,7 +1,7 @@
 {
-  "name": "interview-backend",
+  "name": "metis-home-proj",
   "version": "1.0.0",
-  "description": "interview-backend",
+  "description": "metis-home-proj",
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server",

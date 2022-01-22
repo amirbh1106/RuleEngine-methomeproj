@@ -4,6 +4,7 @@ const httpStatus = require('http-status');
 const routes = require('./routes/v1');
 const ApiError = require('./utils/ApiError');
 const bodyParser = require('body-parser')
+const log = require('./loginutils/savelogs')
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/v1', routes);
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
     next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
+    log.unauthorizedpath(req.path)
 });
 
 module.exports = app;
